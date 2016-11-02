@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table class="table">
+    <tr>
+        <td>Package</td><td>{{ Package }}</td>
+    </tr>
+    <tr>
+        <td>Description</td><td>{{ Description|safe }}</td>
+    </tr>
+    <tr>
+        <td>Depends</td>
+        <td>{% for dep-seq in Depends %}
+                {% for dep in dep-seq %}
+                    {% if not forloop.first %}
+                       |
+                    {% endif %}
+                    {% if dep.Installed %}
+                        <a href="/package/{{ dep.Package }}">{{ dep.Package }}</a>
+                    {% else %}
+                        {{ dep.Package }}
+                    {% endif %}
+                {% endfor%}<br />
+            {% endfor %}</td>
+    </tr>
+    <tr>
+        <td>Packages that depend on this</td>
+        <td>{% for dep in Reverse-Dependencies %}
+                <a href="/package/{{ dep }}">{{ dep }}</a><br />
+            {% endfor %}</td>
+    </tr>
+</table>
+
+{% endblock %}
