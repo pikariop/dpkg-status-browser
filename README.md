@@ -1,3 +1,6 @@
+Interview assignment from 2016. Original readme below.
+___
+
 # dpkg-status-browser
 
 Generated using Luminus version "2.9.11.11"
